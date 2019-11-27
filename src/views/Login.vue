@@ -27,12 +27,14 @@
           <button type="submit" class="form-login__btn">Entrar</button>
         </form>
       </div>
-      <div class="external__links">
+      <div class="page-login__links external__links">
         <div>
           <a href="#" class="external__link">Esqueceu a senha?</a>
         </div>
         <div>
-          <a href="#" class="external__link">Criar novo usuário</a>
+          <router-link :to="{ name: 'register' }" class="external__link"
+            >Criar novo usuário</router-link
+          >
         </div>
       </div>
     </div>
