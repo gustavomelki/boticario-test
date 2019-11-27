@@ -1,0 +1,36 @@
+.external
+  align-items: center
+  background-color: $grey-dark
+  display: flex
+  justify-content: center
+
+  &__container
+    max-width: 90%
+    text-align: center
+    width: 500px
+
+  &__icon
+    display: block
+    height: auto
+    margin: 0 auto
+    max-width: 100px
+
+  &__title
+    margin-top: 0
+  
+  &__description
+    @extend .description
+
+  &__links
+    display: flex
+    justify-content: space-between
+    margin-top: 1rem
+    margin-bottom: 3rem
+
+  &__link
+    font-size: .75rem
+    color: $grey-light
+    text-decoration: none
+
+    &:hover
+      color: lighten($grey-light, 10%)

@@ -1,0 +1,40 @@
+.btn
+  @extend .anima-ease
+  border: 1px solid transparent
+  border-radius: .25rem
+  box-shadow: 0 4px 6px rgba(50,50,93,.1)
+  cursor: pointer
+  display: inline-block
+  font-family: inherit
+  font-size: .875rem
+  letter-spacing: .05em
+  line-height: $line-height-base
+  margin: 0
+  padding: 10px 20px
+  text-align: center
+  text-transform: uppercase
+  user-select: none
+  vertical-align: middle
+  white-space: nowrap
+
+  &:hover
+    box-shadow: 0 7px 14px rgba(50,50,93,.1)
+    transform: translateY(-1px)
+
+.btn-grey-dark
+  @extend .btn
+  color: $white
+  background-color: $grey-dark
+  border-color: $grey-dark
+
+  &:hover
+    background-color: darken($grey-dark, 5%)
+
+.btn-grey-light
+  @extend .btn
+  color: $white
+  background-color: $grey-light
+  border-color: $grey-light
+
+  &:hover
+    background-color: lighten($grey-light, 10%)

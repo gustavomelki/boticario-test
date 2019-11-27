@@ -24,7 +24,7 @@
             placeholder="Senha"
             class="form-login__input input-default"
           />
-          <button type="submit" class="form-login__button">Entrar</button>
+          <button type="submit" class="form-login__btn">Entrar</button>
         </form>
       </div>
       <div class="external__links">
