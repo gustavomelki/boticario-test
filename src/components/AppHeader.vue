@@ -1,28 +1,12 @@
 <template>
-  <header>
-    <div class="container">
-      <img src="@/assets/images/icone-grupo.png" alt="Ícone Grupo Boticário" />
-      <nav>
-        <ul>
-          <li>
-            <router-link :to="{ name: 'dashboard' }" title="Suas Compras"
-              >Suas Compras</router-link
-            >
-          </li>
-          <li>
-            <router-link
-              :to="{ name: 'purchases-register' }"
-              title="Cadastrar Compra"
-              >Cadastrar Compra</router-link
-            >
-          </li>
-          <li>
-            <router-link :to="{ name: 'profile' }" title="Editar Perfil"
-              >Editar Perfil</router-link
-            >
-          </li>
-        </ul>
-      </nav>
+  <header class="app-header">
+    <div class="app-header__container container">
+      <img
+        src="@/assets/images/icone-grupo.png"
+        alt="Ícone Grupo Boticário"
+        class="app-header__icon"
+      />
+      <nav-header />
       <div>
         <span>Cashback acumulado</span>
         <span>R$ 900,00</span>
@@ -37,3 +21,13 @@
     </div>
   </header>
 </template>
+
+<script>
+import NavHeader from "@/components/NavHeader";
+export default {
+  name: "AppHeader",
+  components: {
+    NavHeader
+  }
+};
+</script>

@@ -1,7 +1,7 @@
 <template>
   <div class="internal">
     <app-header />
-    <main class="container">
+    <main class="internal__container container">
       <transition name="fade" mode="out-in">
         <router-view />
       </transition>

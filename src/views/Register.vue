@@ -1,6 +1,6 @@
 <template>
   <div class="page-register">
-    <div class="card">
+    <div class="card card--grey-light">
       <div>
         <h3 class="card__title">Cadastro de revendedor(a)</h3>
         <p class="card__description">

@@ -1,6 +1,6 @@
 <template>
   <div class="page-login">
-    <div class="card">
+    <div class="card card--grey-light">
       <div>
         <h3 class="card__title">Acesse sua conta</h3>
         <p class="card__description">

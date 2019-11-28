@@ -6,7 +6,7 @@
         alt="Ícone Grupo Boticário"
         class="external__icon"
       />
-      <div class="external__card">
+      <div>
         <transition name="fade" mode="out-in">
           <router-view />
         </transition>

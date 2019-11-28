@@ -2,7 +2,7 @@
   <div class="page-dashboard">
     <h1>Suas Compras</h1>
     <p>Confira seu extrato de compras e a situação de cada uma</p>
-    <div>
+    <div class="card card--white">
       <table cellpadding="0" cellspacing="0">
         <thead>
           <tr>
