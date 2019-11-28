@@ -2,7 +2,7 @@
   <div class="page-profile">
     <h1>Editar Perfil</h1>
     <p>Preencha os campos para editar o seu perfil</p>
-    <div>
+    <div class="card card--white">
       <form role="form" class="form-profile">
         <input
           type="text"
