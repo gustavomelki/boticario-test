@@ -10,7 +10,9 @@
             >
           </li>
           <li>
-            <router-link :to="{ name: 'register' }" title="Cadastrar Compra"
+            <router-link
+              :to="{ name: 'purchases-register' }"
+              title="Cadastrar Compra"
               >Cadastrar Compra</router-link
             >
           </li>
