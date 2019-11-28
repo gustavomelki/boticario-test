@@ -4,14 +4,17 @@
 @import "header"
 
 body
-  margin: 0
+  background-color: $body-bg
+  color: $body-color
   font-family: $font-family-base
   font-size: $font-size-base
   font-weight: $font-weight-base
   line-height: $line-height-base
-  color: $body-color
+  margin: 0
   text-align: left
-  background-color: $body-bg
+
+*
+  box-sizing: border-box
 
 #app
   color: $black
@@ -21,3 +24,24 @@ body
 
 .app-container > *
   min-height: 100vh
+
+.container
+  width: 100%
+  padding-right: 15px
+  padding-left: 15px
+  margin-right: auto
+  margin-left: auto
+
+  @media (min-width: $md)
+    max-width: 540px
+  
+  @media (min-width: $lg)
+    max-width: 720px
+  
+  @media (min-width: $default-breakpoint)
+    max-width: 960px
+
+  @media (min-width: $xxlg)
+    max-width: 1040px
+    padding-right: 20px
+    padding-left: 20px
