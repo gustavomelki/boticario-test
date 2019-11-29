@@ -3,14 +3,14 @@
     <h1>Suas Compras</h1>
     <p>Confira seu extrato de compras e a situação de cada uma</p>
     <div class="card card--white">
-      <table cellpadding="0" cellspacing="0">
+      <table cellpadding="0" cellspacing="0" class="table-default">
         <thead>
           <tr>
             <th>Data</th>
             <th>Código</th>
             <th>Valor</th>
-            <th>% Cashback</th>
-            <th>Valor Cashback</th>
+            <th>Cashback (%)</th>
+            <th>Cashback (R$)</th>
             <th>Status</th>
             <th>Ação</th>
           </tr>
