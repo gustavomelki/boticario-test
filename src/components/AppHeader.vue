@@ -15,7 +15,7 @@
         <div class="app-header__user-info">
           <div
             class="app-header__avatar"
-            style="background-image: url('https://cdn.icon-icons.com/icons2/1736/PNG/512/4043236-avatar-boy-male-portrait_113250.png')"
+            style="background-image: url('https://accounts-avatar.empiricus.com.br/a86d2890-2699-44f0-9f04-a10fcfbad25e.jpeg')"
           />
           <div class="app-header__info">
             <span class="app-header__welcome">Gustavo M.</span>
