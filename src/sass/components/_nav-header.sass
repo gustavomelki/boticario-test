@@ -1,12 +1,25 @@
 .nav-header
-  &__links
+  &__list
     display: flex
     margin-top: 1rem
+    list-style: none
+    padding: 0
+    margin: 0 0 0 2rem
+
+  &__item
+    margin-left: 5px
 
   &__link
-    font-size: .75rem
+    @extend .anima-ease
+    border-radius: .25rem
+    font-size: .9rem
     color: $grey-light
     text-decoration: none
+    padding: .5rem .7rem
+    white-space: nowrap
 
     &:hover
       color: lighten($grey-light, 10%)
+
+    &.router-link-active
+      background-color: darken($grey-dark, 5%)
