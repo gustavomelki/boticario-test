@@ -9,9 +9,9 @@
             <th>&nbsp;</th>
             <th>Data</th>
             <th>Código</th>
-            <th class="align-right">Valor</th>
-            <th class="align-right">Cashback (%)</th>
+            <th class="align-right">Valor da compra</th>
             <th class="align-right">Cashback (R$)</th>
+            <th class="align-right">Cashback (%)</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -26,10 +26,14 @@
               </button>
             </td>
             <td>28/11/2019</td>
-            <td>2019450973</td>
+            <td>
+              <router-link :to="{ name: 'purchases-edit' }"
+                >2019450973</router-link
+              >
+            </td>
             <td class="align-right">R$ 3.000,00</td>
-            <td class="align-right">10%</td>
             <td class="align-right">R$ 300,00</td>
+            <td class="align-right">10%</td>
             <td>
               <span class="page-dashboard__tag page-dashboard__tag--validation"
                 >Em validação</span
@@ -41,8 +45,8 @@
             <td>28/11/2019</td>
             <td>2019450973</td>
             <td class="align-right">R$ 3.000,00</td>
-            <td class="align-right">10%</td>
             <td class="align-right">R$ 300,00</td>
+            <td class="align-right">10%</td>
             <td>
               <span class="page-dashboard__tag page-dashboard__tag--disapproved"
                 >Reprovado</span
@@ -54,8 +58,8 @@
             <td>28/11/2019</td>
             <td>2019450973</td>
             <td class="align-right">R$ 3.000,00</td>
-            <td class="align-right">10%</td>
             <td class="align-right">R$ 300,00</td>
+            <td class="align-right">10%</td>
             <td>
               <span class="page-dashboard__tag page-dashboard__tag--approved"
                 >Aprovado</span
