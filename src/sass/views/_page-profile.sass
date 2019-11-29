@@ -1,0 +1,49 @@
+.page-profile
+
+  &__avatar-container
+    width: 100%
+
+    @media (min-width: $lg)
+      padding-right: 30px
+      width: 300px
+
+  &__avatar
+    @extend .anima-ease
+    background-color: $grey-light
+    background-size: cover
+    background-repeat: no-repeat
+    border-radius: 50%
+    box-shadow: 0 4px 6px rgba(50,50,93,.1)
+    cursor: pointer
+    margin: 0 auto 2rem
+    @extend .shadow
+    height: 100px
+    width: 100px
+
+    &:hover
+      box-shadow: 0 7px 14px rgba(50,50,93,.1)
+      transform: translateY(-2px)
+
+    @media (min-width: $lg)
+      height: 160px
+      width: 160px
+
+  .form-profile
+    @media (min-width: $lg)
+      display: flex
+      padding: 3rem 0
+
+    &__fields
+      flex-grow: 1
+
+    &__input
+      &:nth-child(even)
+        @media (min-width: $md)
+          margin-left: 1rem
+
+    &__btn
+      display: block
+      margin: 0 auto
+
+      @media (min-width: $lg)
+        margin: 0

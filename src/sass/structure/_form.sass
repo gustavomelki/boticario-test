@@ -1,6 +1,5 @@
-.input-default
+.input
   @extend .anima-ease
-  background-color: $white
   border: 0 none
   border-radius: 0.25rem
   box-shadow: 0 1px 3px rgba(50,50,93,.15)
@@ -17,3 +16,19 @@
   &:focus
     outline: none
     box-shadow: 0 1px 3px rgba(50,50,93,.35)
+
+.input-default
+  @extend .input
+  background-color: $white
+
+.input-grey
+  @extend .input
+  background-color: #f9f9f9
+
+.input-group
+  @media (min-width: $md)
+    display: flex
+
+    > input-default,
+    > input-grey
+      flex-grow: 1
