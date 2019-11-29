@@ -6,45 +6,61 @@
       <table cellpadding="0" cellspacing="0" class="table-default">
         <thead>
           <tr>
+            <th>&nbsp;</th>
             <th>Data</th>
             <th>Código</th>
-            <th>Valor</th>
-            <th>Cashback (%)</th>
-            <th>Cashback (R$)</th>
+            <th class="align-right">Valor</th>
+            <th class="align-right">Cashback (%)</th>
+            <th class="align-right">Cashback (R$)</th>
             <th>Status</th>
-            <th>Ação</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td class="align-center">
+              <button class="page-dashboard__icon icon" title="Editar">
+                <font-awesome-icon icon="edit" />
+              </button>
+              <button class="page-dashboard__icon icon" title="Excluir">
+                <font-awesome-icon icon="trash-alt" />
+              </button>
+            </td>
             <td>28/11/2019</td>
             <td>2019450973</td>
-            <td>R$ 3.000,00</td>
-            <td>10%</td>
-            <td>R$ 300,00</td>
-            <td><span>Em validação</span></td>
+            <td class="align-right">R$ 3.000,00</td>
+            <td class="align-right">10%</td>
+            <td class="align-right">R$ 300,00</td>
             <td>
-              <button title="Editar">Editar</button>
-              <button title="Excluir">Excluir</button>
+              <span class="page-dashboard__tag page-dashboard__tag--validation"
+                >Em validação</span
+              >
             </td>
           </tr>
           <tr>
+            <td>&nbsp;</td>
             <td>28/11/2019</td>
             <td>2019450973</td>
-            <td>R$ 3.000,00</td>
-            <td>10%</td>
-            <td>R$ 300,00</td>
-            <td><span>Reprovado</span></td>
-            <td>&nbsp;</td>
+            <td class="align-right">R$ 3.000,00</td>
+            <td class="align-right">10%</td>
+            <td class="align-right">R$ 300,00</td>
+            <td>
+              <span class="page-dashboard__tag page-dashboard__tag--disapproved"
+                >Reprovado</span
+              >
+            </td>
           </tr>
           <tr>
+            <td>&nbsp;</td>
             <td>28/11/2019</td>
             <td>2019450973</td>
-            <td>R$ 3.000,00</td>
-            <td>10%</td>
-            <td>R$ 300,00</td>
-            <td><span>Aprovado</span></td>
-            <td>&nbsp;</td>
+            <td class="align-right">R$ 3.000,00</td>
+            <td class="align-right">10%</td>
+            <td class="align-right">R$ 300,00</td>
+            <td>
+              <span class="page-dashboard__tag page-dashboard__tag--approved"
+                >Aprovado</span
+              >
+            </td>
           </tr>
         </tbody>
       </table>

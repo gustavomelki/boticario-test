@@ -1,0 +1,32 @@
+.page-dashboard
+
+  &__tag
+    border-radius: .25rem
+    box-shadow: 0 1px 3px rgba(50,50,93,.15)
+    color: $white
+    font-size: .6rem
+    font-weight: 400
+    padding: .1rem .6rem
+    text-transform: uppercase
+
+    &--approved
+      background-color: #2dce89
+    
+    &--disapproved
+      background-color: #f5365c
+    
+    &--validation
+      background-color: #11cdef
+
+  &__icon
+    @extend .anima-ease
+    background-color: transparent
+    border: 0 none
+    color: $grey-dark
+    cursor: pointer
+    font-size: 1rem
+    margin: 0 .3rem
+    padding: 0
+
+    &:hover
+      color: darken($grey-dark, 20%)
