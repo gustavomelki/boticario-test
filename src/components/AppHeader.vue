@@ -8,9 +8,9 @@
       />
       <div class="app-header__collapse">
         <nav-header class="app-header__nav" />
-        <div class="cashback">
+        <div class="app-header__cashback cashback">
           <span class="cashback__label">Saldo de cashback</span>
-          <span class="cashback__value">R$ 900,00</span>
+          <span class="cashback__value">R$ 15.900,00</span>
         </div>
         <div class="app-header__user-info">
           <div

@@ -57,24 +57,27 @@
     height: 2.7rem
     width: 2.7rem
 
-.cashback
-  box-shadow: 0 4px 6px rgba(50,50,93,.1)
-  margin-right: 2rem
-  text-align: center
+  &__cashback
+    text-align: center
+    margin-right: 2rem
 
+    .cashback__label
+      color: $grey-light
+
+.cashback
   &__label
     display: block
-    color: $grey-light
     font-size: .5rem
     letter-spacing: .05rem
+    line-height: 2
     text-transform: uppercase
     margin-bottom: 2px
 
   &__value
     background-color: #d2db24
     border-radius: .25rem
+    box-shadow: 0 4px 6px rgba(50,50,93,.1)
     color: $white
-    display: block
     font-size: 1rem
     font-weight: 600
     padding: .1rem .6rem
