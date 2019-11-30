@@ -29,6 +29,11 @@
           placeholder="Senha"
           class="form-register__input input-default"
         />
+        <input
+          type="password"
+          placeholder="Senha novamente"
+          class="form-register__input input-default"
+        />
         <button
           type="submit"
           class="form-register__btn btn-grey-dark"
