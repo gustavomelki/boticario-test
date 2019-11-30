@@ -26,10 +26,7 @@
             v-model.lazy="price"
           />
           <div class="page-purchases-register__cashback">
-            <div class="cashback">
-              <span class="cashback__label">Cashback gerado:</span>
-              <span class="cashback__value">R$ 15.300,00</span>
-            </div>
+            <cashback label="Cashback gerado:" value="R$ 0,00" />
           </div>
         </div>
         <button
@@ -46,8 +43,12 @@
 
 <script>
 import { mask } from "vue-the-mask";
+import Cashback from "@/components/Cashback";
 export default {
   name: "PurchasesRegister",
+  components: {
+    Cashback
+  },
   directives: { mask },
   data() {
     return {

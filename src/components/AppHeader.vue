@@ -15,10 +15,11 @@
           <font-awesome-icon icon="times" />
         </button>
         <nav-header class="app-header__nav" />
-        <div class="app-header__cashback cashback">
-          <span class="cashback__label">Saldo de cashback</span>
-          <span class="cashback__value">R$ 15.900,00</span>
-        </div>
+        <cashback
+          class="app-header__cashback"
+          label="Saldo de cashback"
+          value="R$ 15.900,00"
+        />
         <div class="app-header__user-info">
           <div
             class="app-header__avatar"
@@ -35,10 +36,12 @@
 </template>
 
 <script>
+import Cashback from "@/components/Cashback";
 import NavHeader from "@/components/NavHeader";
 export default {
   name: "AppHeader",
   components: {
+    Cashback,
     NavHeader
   }
 };
