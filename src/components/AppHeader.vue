@@ -7,11 +7,14 @@
           alt="Ícone Grupo Boticário"
           class="app-header__icon"
       /></router-link>
-      <button class="app-header__btn--toggle">
+      <button class="app-header__btn--toggle" @click="showMenuMobile = true">
         <font-awesome-icon icon="bars" />
       </button>
-      <div class="app-header__collapse">
-        <button class="app-header__btn--close">
+      <div
+        class="app-header__collapse"
+        :class="showMenuMobile ? 'app-header__collapse--opened' : ''"
+      >
+        <button class="app-header__btn--close" @click="showMenuMobile = false">
           <font-awesome-icon icon="times" />
         </button>
         <nav-header class="app-header__nav" />
@@ -43,6 +46,36 @@ export default {
   components: {
     Cashback,
     NavHeader
+  },
+  data() {
+    return {
+      showMenuMobile: false
+    };
+  },
+  mounted() {
+    this.closeMenuMobile();
+    window.addEventListener("keyup", this.keyUp);
+  },
+  methods: {
+    closeMenuMobile() {
+      const floatedNav = document.querySelector(".app-header");
+      const instance = this;
+
+      document.addEventListener("click", function(evt) {
+        if (!instance.showMenuMobile) return;
+        const isClickInside = floatedNav.contains(evt.target);
+        instance.showMenuMobile = isClickInside;
+      });
+    },
+    keyUp(evt) {
+      evt.preventDefault();
+      if (evt.keyCode === 27) this.showMenuMobile = false;
+    }
+  },
+  watch: {
+    $route() {
+      this.showMenuMobile = false;
+    }
   }
 };
 </script>
