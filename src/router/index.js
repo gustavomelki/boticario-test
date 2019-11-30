@@ -38,7 +38,10 @@ const routes = [
         path: "/dashboard",
         name: "dashboard",
         component: () =>
-          import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
+          import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue"),
+        meta: {
+          title: "Suas Compras"
+        }
       },
       {
         path: "/cadastro-de-compras",
@@ -46,13 +49,19 @@ const routes = [
         component: () =>
           import(
             /* webpackChunkName: "purchases-register" */ "../views/PurchasesRegister.vue"
-          )
+          ),
+        meta: {
+          title: "Cadastro de Compras"
+        }
       },
       {
         path: "/editar-perfil",
         name: "profile",
         component: () =>
-          import(/* webpackChunkName: "profile" */ "../views/Profile.vue")
+          import(/* webpackChunkName: "profile" */ "../views/Profile.vue"),
+        meta: {
+          title: "Editar Perfil"
+        }
       }
     ]
   }
