@@ -6,7 +6,13 @@
         alt="Ícone Grupo Boticário"
         class="app-header__icon"
       />
+      <button class="app-header__btn--toggle">
+        <font-awesome-icon icon="bars" />
+      </button>
       <div class="app-header__collapse">
+        <button class="app-header__btn--close">
+          <font-awesome-icon icon="times" />
+        </button>
         <nav-header class="app-header__nav" />
         <div class="app-header__cashback cashback">
           <span class="cashback__label">Saldo de cashback</span>

@@ -1,25 +1,37 @@
 .nav-header
   &__list
-    display: flex
-    margin-top: 1rem
     list-style: none
+    margin: 0
     padding: 0
-    margin: 0 0 0 2rem
+
+    @media (min-width: $default-breakpoint)
+      display: flex
+      margin-top: 1rem
+      margin: 0 0 0 2rem
 
   &__item
-    margin-left: 5px
+    @media (min-width: $default-breakpoint)
+      margin-left: 5px
 
   &__link
     @extend .anima-ease
     border-radius: .25rem
     font-size: .9rem
-    color: $grey-light
+    color: $grey-dark
+    display: block
     text-decoration: none
     padding: .5rem .7rem
     white-space: nowrap
 
+    @media (min-width: $default-breakpoint)
+      color: $grey-light
+
     &:hover
-      color: lighten($grey-light, 10%)
+      @media (min-width: $default-breakpoint)
+        color: lighten($grey-light, 10%)
 
     &.router-link-active
-      background-color: darken($grey-dark, 5%)
+      background-color: #f9f9f9
+
+      @media (min-width: $default-breakpoint)
+        background-color: darken($grey-dark, 5%)

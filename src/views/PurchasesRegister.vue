@@ -2,7 +2,7 @@
   <div class="page-purchases-register">
     <h1>Cadastro de Compras</h1>
     <p>Preencha os campos para efetuar o cadastro da sua compra</p>
-    <div class="card card--white">
+    <div class="internal__card card card--white">
       <form role="form" class="form-purchases-register">
         <div class="input-group">
           <input

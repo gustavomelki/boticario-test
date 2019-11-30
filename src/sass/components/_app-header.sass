@@ -1,5 +1,11 @@
 .app-header
   background-color: $grey-dark
+  height: 60px
+  margin-bottom: 1rem
+
+  @media (min-width: $default-breakpoint)
+    height: 80px
+    margin-bottom: 2rem
 
   &__container
     align-items: center
@@ -9,31 +15,82 @@
   &__icon
     display: block
     height: auto
-    max-width: 80px
+    max-width: 60px
+
+    @media (min-width: $default-breakpoint)
+      max-width: 80px
 
   &__collapse
-    align-items: center
-    display: flex
-    flex-grow: 1
-    justify-content: flex-end
+    background-color: $white
+    display: none
+    position: relative
+    flex-direction: column-reverse
+    position: absolute
+    top: 10px
+    right: 10px
+    left: 10px
+    padding: 20px
+    border-radius: .25rem
+
+    &.show
+      display: flex
+      @extend .shadow
+
+    @media (min-width: $default-breakpoint)
+      align-items: center
+      background-color: transparent
+      display: flex
+      flex-grow: 1
+      flex-direction: row
+      justify-content: flex-end
+      padding: 0
+      position: relative
+      top: auto
+      right: auto
+      left: auto
+
+  &__btn
+    &--toggle,
+    &--close
+      font-size: 1.25rem
+
+      @media (min-width: $default-breakpoint)
+        display: none
+
+    &--toggle
+      color: $white
+
+    &--close
+      color: $grey-dark
+      position: absolute
+      top: 15px
+      right: 15px
 
   &__nav
-    margin-left: 0
-    margin-right: auto
+    @media (min-width: $default-breakpoint)
+      margin-left: 0
+      margin-right: auto
 
   &__user-info
     align-items: center
     display: flex
 
   &__info
-    margin-left: .5rem
+    margin-left: 1rem
     text-align: right
 
+    @media (min-width: $default-breakpoint)
+      margin-left: .5rem
+
   &__welcome
-    color: $white
+    color: $grey-dark
     display: block
-    font-size: .8rem
+    font-size: 1rem
     margin-bottom: 2px
+
+    @media (min-width: $default-breakpoint)
+      color: $white
+      font-size: .65rem
 
   &__logout
     @extend .anima-ease
@@ -42,9 +99,12 @@
     color: darken($grey-light, 20%)
     cursor: pointer
     display: block
-    font-size: .65rem
+    font-size: .8rem
     padding: 0
     margin: 0
+
+    @media (min-width: $default-breakpoint)
+      font-size: .65rem
 
     &:hover
       color: darken($grey-light, 10%)
@@ -54,12 +114,29 @@
     background-size: cover
     background-repeat: no-repeat
     border-radius: 50%
-    height: 2.7rem
-    width: 2.7rem
+    margin-left: .7rem
+    height: 3rem
+    width: 3rem
+
+    @media (min-width: $default-breakpoint)
+      margin-left: 0
+      height: 2.7rem
+      width: 2.7rem
 
   &__cashback
+    border-top: 1px solid $grey-light
+    border-bottom: 1px solid $grey-light
+    padding: .5rem 0 1rem
+    margin: .5rem 0
     text-align: center
-    margin-right: 2rem
+    
+    @media (min-width: $default-breakpoint)
+      border: 0 none
+      padding: 0
+      margin: 0 2rem 0 0
 
     .cashback__label
-      color: $grey-light
+      color: $grey-dark
+
+      @media (min-width: $default-breakpoint)
+        color: $grey-light
