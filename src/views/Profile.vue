@@ -3,7 +3,12 @@
     <h1>Editar Perfil</h1>
     <p>Preencha os campos para editar o seu perfil</p>
     <div class="internal__card card card--white">
-      <form role="form" class="form-profile">
+      <form
+        role="form"
+        ref="form"
+        class="form-profile"
+        @submit.prevent="onSubmit"
+      >
         <div class="page-profile__avatar-container">
           <div
             class="page-profile__avatar"
@@ -11,42 +16,109 @@
           />
         </div>
         <div class="form-profile__fields">
-          <div class="input-group">
-            <input
-              type="text"
-              placeholder="Nome Completo"
-              class="form-profile__input input-grey"
-              v-model="name"
-            />
-            <input
-              type="tel"
-              placeholder="CPF (apenas números)"
-              class="form-profile__input input-grey"
-              v-mask="'###.###.###-##'"
-              v-model="cpf"
-            />
+          <div class="input__group">
+            <div
+              class="form-profile__input-container input__container"
+              :class="{ error: $v.fullname.$invalid && required }"
+            >
+              <input
+                class="form-profile__input input--grey"
+                :class="{ error: $v.fullname.$error }"
+                v-model.trim="fullname"
+                type="text"
+                name="fullname"
+                value=""
+                placeholder="Nome Completo"
+              />
+              <span
+                class="error--message"
+                v-if="!$v.fullname.required && required"
+                >Obrigatório</span
+              >
+            </div>
+            <div
+              class="form-profile__input-container input__container"
+              :class="{ error: $v.cpf.$invalid && required }"
+            >
+              <input
+                class="form-profile__input input--grey"
+                :class="{ error: $v.cpf.$error }"
+                v-model.trim="cpf"
+                type="tel"
+                name="cpf"
+                value=""
+                placeholder="CPF (apenas números)"
+                v-mask="'###.###.###-##'"
+              />
+              <span class="error--message" v-if="!$v.cpf.cpf && required"
+                >CPF inválido</span
+              >
+            </div>
           </div>
-          <div class="input-group">
-            <input
-              type="email"
-              placeholder="E-mail"
-              class="form-profile__input input-grey"
-              v-model="email"
-            />
+          <div class="input__group">
+            <div
+              class="form-profile__input-container input__container"
+              :class="{ error: $v.email.$invalid && required }"
+            >
+              <input
+                class="form-profile__input input--grey"
+                :class="{ error: $v.email.$error }"
+                v-model.trim="email"
+                type="email"
+                name="email"
+                value=""
+                placeholder="E-mail"
+              />
+              <span class="error--message" v-if="!$v.email.required && required"
+                >Obrigatório</span
+              >
+              <span class="error--message" v-if="!$v.email.email"
+                >Ex: email@domain.com</span
+              >
+            </div>
           </div>
-          <div class="input-group">
-            <input
-              type="password"
-              placeholder="Senha"
-              class="form-profile__input input-grey"
-              v-model="password"
-            />
-            <input
-              type="password"
-              placeholder="Senha novamente"
-              class="form-profile__input input-grey"
-              v-model="password_repeat"
-            />
+          <div class="input__group">
+            <div
+              class="form-profile__input-container input__container"
+              :class="{ error: $v.password.$invalid && required }"
+            >
+              <input
+                class="form-profile__input input--grey"
+                :class="{ error: $v.password.$error }"
+                v-model.trim="password"
+                type="password"
+                name="password"
+                value=""
+                placeholder="Senha"
+              />
+              <span
+                class="error--message"
+                v-if="!$v.password.required && required"
+                >Obrigatório</span
+              >
+              <span class="error--message" v-if="!$v.password.minLength"
+                >Mínimo {{ $v.password.$params.minLength.min }} caracteres</span
+              >
+            </div>
+            <div
+              class="form-profile__input-container input__container"
+              :class="{ error: $v.repeatPassword.$invalid && required }"
+            >
+              <input
+                class="form-profile__input input--grey"
+                :class="{ error: $v.repeatPassword.$error }"
+                v-model.trim="repeatPassword"
+                type="password"
+                name="repeatPassword"
+                value=""
+                placeholder="Senha novamente"
+              />
+              <span
+                class="error--message"
+                v-if="!$v.repeatPassword.sameAsPassword"
+                >Senhas devem ser iguais</span
+              >
+            </div>
           </div>
           <button
             type="submit"
@@ -63,6 +135,8 @@
 
 <script>
 import { mask } from "vue-the-mask";
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import cpf from "@/utils/validators/cpf";
 export default {
   name: "Profile",
   directives: { mask },
@@ -70,10 +144,37 @@ export default {
     return {
       cpf: "32018125877",
       email: "contato@gustavomelki.com.br",
-      name: "Gustavo Melki Portaluri",
+      fullname: "Gustavo Melki Portaluri",
       password: "",
-      password_repeat: ""
+      repeatPassword: "",
+      required: false
     };
+  },
+  methods: {
+    onSubmit() {
+      this.required = true;
+      if (this.$v.$invalid) return;
+      this.required = false;
+    }
+  },
+  validations: {
+    cpf: {
+      cpf
+    },
+    email: {
+      required,
+      email
+    },
+    fullname: {
+      required
+    },
+    password: {
+      required,
+      minLength: minLength(6)
+    },
+    repeatPassword: {
+      sameAsPassword: sameAs("password")
+    }
   }
 };
 </script>
