@@ -1,11 +1,12 @@
 <template>
   <header class="app-header">
     <div class="app-header__container container">
-      <img
-        src="@/assets/images/icone-grupo.png"
-        alt="Ícone Grupo Boticário"
-        class="app-header__icon"
-      />
+      <router-link :to="{ name: 'dashboard' }" title="Voltar ao início">
+        <img
+          src="@/assets/images/icone-grupo.png"
+          alt="Ícone Grupo Boticário"
+          class="app-header__icon"
+      /></router-link>
       <button class="app-header__btn--toggle">
         <font-awesome-icon icon="bars" />
       </button>
