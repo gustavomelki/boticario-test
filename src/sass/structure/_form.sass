@@ -1,6 +1,6 @@
 .input
   @extend .anima-ease
-  border: 0 none
+  border: 2px solid $white
   border-radius: 0.25rem
   box-shadow: 0 1px 3px rgba(50,50,93,.15)
   box-sizing: border-box
@@ -9,7 +9,6 @@
   font-size: .875rem
   height: 46px
   line-height: 46px
-  margin-bottom: 1rem
   padding: 0 15px
   width: 100%
 
@@ -17,18 +16,35 @@
     outline: none
     box-shadow: 0 1px 3px rgba(50,50,93,.35)
 
-.input-default
-  @extend .input
-  background-color: $white
+  &--default
+    @extend .input
+    background-color: $white
 
-.input-grey
-  @extend .input
-  background-color: #f9f9f9
+  &--grey
+    @extend .input
+    background-color: #f9f9f9
 
-.input-group
-  @media (min-width: $md)
-    display: flex
+  &__container
+    margin-bottom: 1rem
+    width: 100%
 
-    > input-default,
-    > input-grey
-      flex-grow: 1
+    &.error
+      input
+        border-color: #f5365c
+        color: #f5365c
+    
+  &__group
+    @media (min-width: $md)
+      display: flex
+
+      > input__container
+        flex-grow: 1
+
+.error--message
+  color: $grey-dark
+  display: block
+  font-size: .7em
+  padding-top: .6em
+
+  .error &
+    color: #f5365c

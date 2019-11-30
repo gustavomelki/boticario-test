@@ -7,17 +7,52 @@
           Digite abaixo seus dados de acesso
         </p>
       </div>
-      <form role="form" class="form-login">
-        <input
-          type="email"
-          placeholder="E-mail"
-          class="form-login__input input-default"
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          class="form-login__input input-default"
-        />
+      <form
+        role="form"
+        ref="form"
+        class="form-login"
+        @submit.prevent="onSubmit"
+      >
+        <div
+          class="input__container"
+          :class="{ error: $v.email.$invalid && required }"
+        >
+          <input
+            class="form-login__input input--default"
+            :class="{ error: $v.email.$error }"
+            v-model.trim="email"
+            type="email"
+            name="email"
+            value=""
+            placeholder="E-mail"
+          />
+          <span class="error--message" v-if="!$v.email.required && required"
+            >Obrigatório</span
+          >
+          <span class="error--message" v-if="!$v.email.email"
+            >Ex: email@domain.com</span
+          >
+        </div>
+        <div
+          class="input__container"
+          :class="{ error: $v.password.$invalid && required }"
+        >
+          <input
+            class="form-login__input input--default"
+            :class="{ error: $v.password.$error }"
+            v-model.trim="password"
+            type="password"
+            name="password"
+            value=""
+            placeholder="Senha"
+          />
+          <span class="error--message" v-if="!$v.password.required && required"
+            >Obrigatório</span
+          >
+          <span class="error--message" v-if="!$v.password.minLength"
+            >Mínimo {{ $v.password.$params.minLength.min }} caracteres</span
+          >
+        </div>
         <button type="submit" class="form-login__btn btn-grey-dark">
           Entrar
         </button>
@@ -35,3 +70,34 @@
     </div>
   </div>
 </template>
+
+<script>
+import { required, email, minLength } from "vuelidate/lib/validators";
+export default {
+  name: "Login",
+  data() {
+    return {
+      email: "",
+      password: "",
+      required: false
+    };
+  },
+  methods: {
+    onSubmit() {
+      this.required = true;
+      if (this.$v.$invalid) return;
+      this.required = false;
+    }
+  },
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required,
+      minLength: minLength(6)
+    }
+  }
+};
+</script>
