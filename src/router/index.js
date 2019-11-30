@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import store from "../store";
+// import store from "../store";
 import External from "../views/External.vue";
 import Internal from "../views/Internal.vue";
 
@@ -74,9 +74,20 @@ const router = new VueRouter({
   routes
 });
 
+// change document title
+router.afterEach(toRoute => {
+  const appTitle = "Área do(a) Revendedor(a) - Grupo Boticário";
+  const metaTitle =
+    toRoute.meta && toRoute.meta.title
+      ? `${toRoute.meta.title} | ${appTitle}`
+      : appTitle;
+  window.document.title = metaTitle;
+});
+
 router.beforeEach((to, from, next) => {
   // store.dispatch("fetchAccessToken");
-  const isAuthenticated = store.state.accessToken;
+  // const isAuthenticated = store.state.accessToken;
+  const isAuthenticated = true;
   if (to.name === "login" || to.name === "register") {
     if (isAuthenticated) {
       next({ name: "dashboard" });
