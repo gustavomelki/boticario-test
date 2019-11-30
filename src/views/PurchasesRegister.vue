@@ -22,6 +22,8 @@
             type="tel"
             placeholder="Valor da Compra"
             class="form-purchases-register__input input-grey"
+            v-money="money"
+            v-model.lazy="price"
           />
           <div class="page-purchases-register__cashback">
             <div class="cashback">
@@ -46,6 +48,16 @@
 import { mask } from "vue-the-mask";
 export default {
   name: "PurchasesRegister",
-  directives: { mask }
+  directives: { mask },
+  data() {
+    return {
+      price: "",
+      money: {
+        decimal: ",",
+        thousands: ".",
+        prefix: "R$ "
+      }
+    };
+  }
 };
 </script>
