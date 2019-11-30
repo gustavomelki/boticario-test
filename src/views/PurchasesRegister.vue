@@ -14,6 +14,7 @@
             type="tel"
             placeholder="Data da Compra"
             class="form-purchases-register__input input-grey"
+            v-mask="'##/##/####'"
           />
         </div>
         <div class="input-group">
@@ -40,3 +41,11 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mask } from "vue-the-mask";
+export default {
+  name: "PurchasesRegister",
+  directives: { mask }
+};
+</script>

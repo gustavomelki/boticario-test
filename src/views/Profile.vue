@@ -22,6 +22,7 @@
               type="tel"
               placeholder="CPF (apenas números)"
               class="form-profile__input input-grey"
+              v-mask="'###.###.###-##'"
               v-model="cpf"
             />
           </div>
@@ -61,8 +62,10 @@
 </template>
 
 <script>
+import { mask } from "vue-the-mask";
 export default {
   name: "Profile",
+  directives: { mask },
   data() {
     return {
       cpf: "32018125877",

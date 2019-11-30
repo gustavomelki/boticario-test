@@ -17,6 +17,7 @@
           type="tel"
           placeholder="CPF (apenas números)"
           class="form-register__input input-default"
+          v-mask="'###.###.###-##'"
         />
         <input
           type="email"
@@ -46,3 +47,11 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mask } from "vue-the-mask";
+export default {
+  name: "Register",
+  directives: { mask }
+};
+</script>
