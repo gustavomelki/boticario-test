@@ -26,7 +26,7 @@
             v-model.lazy="price"
           />
           <div class="page-purchases-register__cashback">
-            <cashback label="Cashback gerado:" value="R$ 0,00" />
+            <cashback label="Cashback gerado:" :value="cashback" />
           </div>
         </div>
         <button
@@ -52,6 +52,7 @@ export default {
   directives: { mask },
   data() {
     return {
+      cashback: "0,00",
       price: "",
       money: {
         decimal: ",",
@@ -59,6 +60,31 @@ export default {
         prefix: "R$ "
       }
     };
+  },
+  methods: {
+    calculateCashback(val) {
+      const number = val
+        .replace("R$ ", "")
+        .replace(/\./g, "")
+        .replace(",", ".");
+
+      let cashNumber = 0;
+      if (number <= 1000) cashNumber = number * 0.1;
+      else if (number > 1000 && number <= 2000) cashNumber = number * 0.15;
+      else cashNumber = number * 0.2;
+
+      this.cashback = this.numberToReal(cashNumber);
+    },
+    numberToReal(num) {
+      const number = num.toFixed(2).split(".");
+      number[0] = `R$ ${number[0].split(/(?=(?:...)*$)/).join(".")}`;
+      return number.join(",");
+    }
+  },
+  watch: {
+    price(value) {
+      this.calculateCashback(value);
+    }
   }
 };
 </script>
