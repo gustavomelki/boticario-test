@@ -31,7 +31,9 @@
           />
           <div class="app-header__info">
             <span class="app-header__welcome">Gustavo M.</span>
-            <button class="app-header__logout" title="Sair">Sair</button>
+            <button class="app-header__logout" title="Sair" @click="logout">
+              Sair
+            </button>
           </div>
         </div>
       </div>
@@ -40,6 +42,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import axios from "axios";
 import Cashback from "@/components/Cashback";
 import NavHeader from "@/components/NavHeader";
@@ -62,6 +65,7 @@ export default {
     window.addEventListener("keyup", this.keyUp);
   },
   methods: {
+    ...mapActions(["logout"]),
     closeMenuMobile() {
       const floatedNav = document.querySelector(".app-header");
       const instance = this;

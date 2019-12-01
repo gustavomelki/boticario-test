@@ -31,7 +31,7 @@
                 placeholder="Nome Completo"
               />
               <span
-                class="error--message"
+                class="form__input-message"
                 v-if="!$v.fullname.required && required"
                 >Obrigatório</span
               >
@@ -50,7 +50,7 @@
                 placeholder="CPF (apenas números)"
                 v-mask="'###.###.###-##'"
               />
-              <span class="error--message" v-if="!$v.cpf.cpf && required"
+              <span class="form__input-message" v-if="!$v.cpf.cpf && required"
                 >CPF inválido</span
               >
             </div>
@@ -69,10 +69,12 @@
                 value=""
                 placeholder="E-mail"
               />
-              <span class="error--message" v-if="!$v.email.required && required"
+              <span
+                class="form__input-message"
+                v-if="!$v.email.required && required"
                 >Obrigatório</span
               >
-              <span class="error--message" v-if="!$v.email.email"
+              <span class="form__input-message" v-if="!$v.email.email"
                 >Ex: email@domain.com</span
               >
             </div>
@@ -92,11 +94,11 @@
                 placeholder="Senha"
               />
               <span
-                class="error--message"
+                class="form__input-message"
                 v-if="!$v.password.required && required"
                 >Obrigatório</span
               >
-              <span class="error--message" v-if="!$v.password.minLength"
+              <span class="form__input-message" v-if="!$v.password.minLength"
                 >Mínimo {{ $v.password.$params.minLength.min }} caracteres</span
               >
             </div>
@@ -114,7 +116,7 @@
                 placeholder="Senha novamente"
               />
               <span
-                class="error--message"
+                class="form__input-message"
                 v-if="!$v.repeatPassword.sameAsPassword"
                 >Senhas devem ser iguais</span
               >

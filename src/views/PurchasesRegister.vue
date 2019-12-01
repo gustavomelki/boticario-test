@@ -24,11 +24,11 @@
               placeholder="Código da Compra"
             />
             <span
-              class="error--message"
+              class="form__input-message"
               v-if="!$v.codePurchase.required && required"
               >Obrigatório</span
             >
-            <span class="error--message" v-if="!$v.codePurchase.minLength"
+            <span class="form__input-message" v-if="!$v.codePurchase.minLength"
               >Mínimo
               {{ $v.codePurchase.$params.minLength.min }} caracteres</span
             >
@@ -48,11 +48,11 @@
               v-mask="'##/##/####'"
             />
             <span
-              class="error--message"
+              class="form__input-message"
               v-if="!$v.datePurchase.required && required"
               >Obrigatório</span
             >
-            <span class="error--message" v-if="!$v.datePurchase.minLength"
+            <span class="form__input-message" v-if="!$v.datePurchase.minLength"
               >Data inválida</span
             >
           </div>

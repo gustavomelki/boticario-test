@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import store from "../store";
+import store from "../store";
 import External from "../views/External.vue";
 import Internal from "../views/Internal.vue";
 
@@ -85,9 +85,9 @@ router.afterEach(toRoute => {
 });
 
 router.beforeEach((to, from, next) => {
-  // store.dispatch("fetchAccessToken");
-  // const isAuthenticated = store.state.accessToken;
-  const isAuthenticated = true;
+  store.dispatch("fetchAccessToken");
+  const isAuthenticated = store.state.accessToken;
+  // const isAuthenticated = false;
   if (to.name === "login" || to.name === "register") {
     if (isAuthenticated) {
       next({ name: "dashboard" });

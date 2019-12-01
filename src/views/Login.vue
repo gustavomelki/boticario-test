@@ -12,7 +12,9 @@
         ref="form"
         class="form-login"
         @submit.prevent="onSubmit"
+        @keyup="clearMessage"
       >
+        <p v-if="loginError" class="form__message">{{ loginError }}</p>
         <div
           class="input__container"
           :class="{ error: $v.email.$invalid && required }"
@@ -23,14 +25,15 @@
             v-model.trim="email"
             type="email"
             name="email"
-            value=""
             placeholder="E-mail"
           />
-          <span class="error--message" v-if="!$v.email.required && required"
+          <span
+            class="form__input-message"
+            v-if="!$v.email.required && required"
             >Obrigatório</span
           >
-          <span class="error--message" v-if="!$v.email.email"
-            >Ex: email@domain.com</span
+          <span class="form__input-message" v-if="!$v.email.email"
+            >Ex: email@dominio.com.br</span
           >
         </div>
         <div
@@ -43,16 +46,20 @@
             v-model.trim="password"
             type="password"
             name="password"
-            value=""
             placeholder="Senha"
           />
-          <span class="error--message" v-if="!$v.password.required && required"
+          <span
+            class="form__input-message"
+            v-if="!$v.password.required && required"
             >Obrigatório</span
           >
-          <span class="error--message" v-if="!$v.password.minLength"
+          <span class="form__input-message" v-if="!$v.password.minLength"
             >Mínimo {{ $v.password.$params.minLength.min }} caracteres</span
           >
         </div>
+        <p class="form__legend">
+          e-mail: <em>eve.holt@reqres.in</em> | password: <em>cityslicka</em>
+        </p>
         <button type="submit" class="form-login__btn btn-grey-dark">
           Entrar
         </button>
@@ -72,6 +79,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import { required, email, minLength } from "vuelidate/lib/validators";
 export default {
   name: "Login",
@@ -82,11 +90,23 @@ export default {
       required: false
     };
   },
+  computed: {
+    ...mapState(["loggingIn", "loginError", "accessToken"])
+  },
   methods: {
+    ...mapActions(["doLogin"]),
+    clearMessage() {
+      this.$store.commit("loginStop", null);
+    },
     onSubmit() {
       this.required = true;
       if (this.$v.$invalid) return;
       this.required = false;
+
+      this.doLogin({
+        email: this.email,
+        password: this.password
+      });
     }
   },
   validations: {
@@ -96,7 +116,7 @@ export default {
     },
     password: {
       required,
-      minLength: minLength(6)
+      minLength: minLength(4)
     }
   }
 };

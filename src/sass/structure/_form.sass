@@ -1,3 +1,29 @@
+.form
+  &__legend
+    border: 1px dotted $grey-dark
+    border-radius: .25rem
+    color: $grey-dark
+    font-size: .8rem
+    display: block
+    padding: .6em
+
+  &__message
+    background-color: $red
+    border-radius: .25rem
+    color: $white
+    font-size: .8rem
+    display: block
+    padding: .8em
+
+  &__input-message
+    color: $grey-dark
+    display: block
+    font-size: .7em
+    padding-top: .6em
+
+    .error &
+      color: $red
+
 .input
   @extend .anima-ease
   border: 2px solid transparent
@@ -22,7 +48,7 @@
 
   &--grey
     @extend .input
-    background-color: #f9f9f9
+    background-color: $grey-lighter
 
   &__container
     margin-bottom: 1rem
@@ -30,8 +56,8 @@
 
     &.error
       input
-        border-color: #f5365c
-        color: #f5365c
+        border-color: $red
+        color: $red
     
   &__group
     @media (min-width: $md)
@@ -39,12 +65,3 @@
 
       > input__container
         flex-grow: 1
-
-.error--message
-  color: $grey-dark
-  display: block
-  font-size: .7em
-  padding-top: .6em
-
-  .error &
-    color: #f5365c
