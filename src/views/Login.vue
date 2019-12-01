@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
 import { required, email, minLength } from "vuelidate/lib/validators";
 export default {
   name: "Login",
@@ -91,12 +91,14 @@ export default {
     };
   },
   computed: {
-    ...mapState(["loggingIn", "loginError", "accessToken"])
+    loginError() {
+      return this.$store.state.auth.loginError;
+    }
   },
   methods: {
-    ...mapActions(["doLogin"]),
+    ...mapActions({ doLogin: "auth/doLogin" }),
     clearMessage() {
-      this.$store.commit("loginStop", null);
+      this.$store.commit("auth/loginStop", null);
     },
     onSubmit() {
       this.required = true;

@@ -65,7 +65,7 @@ export default {
     window.addEventListener("keyup", this.keyUp);
   },
   methods: {
-    ...mapActions(["logout"]),
+    ...mapActions({ logout: "auth/logout" }),
     closeMenuMobile() {
       const floatedNav = document.querySelector(".app-header");
       const instance = this;

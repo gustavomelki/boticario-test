@@ -12,7 +12,9 @@ import { mapActions } from "vuex";
 export default {
   name: "App",
   methods: {
-    ...mapActions(["fetchAccessToken"])
+    ...mapActions({
+      fetchAccessToken: "auth/fetchAccessToken"
+    })
   },
   created() {
     this.fetchAccessToken();

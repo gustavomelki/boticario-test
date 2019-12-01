@@ -85,8 +85,8 @@ router.afterEach(toRoute => {
 });
 
 router.beforeEach((to, from, next) => {
-  store.dispatch("fetchAccessToken");
-  const isAuthenticated = store.state.accessToken;
+  store.dispatch("auth/fetchAccessToken");
+  const isAuthenticated = store.state.auth.accessToken;
   // const isAuthenticated = false;
   if (to.name === "login" || to.name === "register") {
     if (isAuthenticated) {
