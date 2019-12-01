@@ -14,7 +14,9 @@
         @submit.prevent="onSubmit"
         @keyup="clearMessage"
       >
-        <p v-if="loginError" class="form__message">{{ loginError }}</p>
+        <p v-if="loginError" class="form__message" id="message-error">
+          {{ loginError }}
+        </p>
         <div
           class="input__container"
           :class="{ error: $v.email.$invalid && required }"
@@ -25,6 +27,7 @@
             v-model.trim="email"
             type="email"
             name="email"
+            id="email"
             placeholder="E-mail"
           />
           <span
@@ -46,6 +49,7 @@
             v-model.trim="password"
             type="password"
             name="password"
+            id="password"
             placeholder="Senha"
           />
           <span
@@ -70,7 +74,10 @@
         <a href="#" class="external__link">Esqueceu a senha?</a>
       </div>
       <div>
-        <router-link :to="{ name: 'register' }" class="external__link"
+        <router-link
+          id="external__link--register"
+          :to="{ name: 'register' }"
+          class="external__link"
           >Criar novo usuário</router-link
         >
       </div>
