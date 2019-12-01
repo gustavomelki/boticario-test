@@ -22,7 +22,6 @@
           class="app-header__cashback"
           label="Saldo de cashback"
           :value="cashback"
-          :loading="loading"
         />
         <div class="app-header__user-info">
           <div
@@ -43,7 +42,6 @@
 
 <script>
 import { mapActions } from "vuex";
-import axios from "axios";
 import Cashback from "@/components/Cashback";
 import NavHeader from "@/components/NavHeader";
 export default {
@@ -54,18 +52,25 @@ export default {
   },
   data() {
     return {
-      cashback: "0,00",
       loading: true,
       showMenuMobile: false
     };
   },
   mounted() {
     this.closeMenuMobile();
-    this.getCashback();
+    this.setCashback();
     window.addEventListener("keyup", this.keyUp);
   },
+  computed: {
+    cashback() {
+      return this.$store.getters["purchases/getCashback"];
+    }
+  },
   methods: {
-    ...mapActions({ logout: "auth/logout" }),
+    ...mapActions({
+      logout: "auth/logout",
+      setCashback: "purchases/setPurchasesList"
+    }),
     closeMenuMobile() {
       const floatedNav = document.querySelector(".app-header");
       const instance = this;
@@ -75,17 +80,6 @@ export default {
         const isClickInside = floatedNav.contains(evt.target);
         instance.showMenuMobile = isClickInside;
       });
-    },
-    getCashback() {
-      axios
-        .get("http://www.mocky.io/v2/5de3e2b730000086009f78cc")
-        .then(res => {
-          this.cashback = res.data.cashback_total;
-          this.loading = false;
-        })
-        .catch(() => {
-          this.loading = false;
-        });
     },
     keyUp(evt) {
       evt.preventDefault();
