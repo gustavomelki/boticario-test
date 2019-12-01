@@ -24,7 +24,7 @@
           <tbody>
             <tr v-for="item in purchases" :key="item.id">
               <td class="align-center">
-                <template v-if="item.status.slug === 'validation'">
+                <template v-if="item.status.slug === statusEnabled">
                   <button class="page-dashboard__icon icon" title="Editar">
                     <font-awesome-icon icon="edit" />
                   </button>
@@ -35,9 +35,12 @@
               </td>
               <td>{{ item.date }}</td>
               <td>
-                <router-link :to="{ name: 'purchases-edit' }">{{
-                  item.code
-                }}</router-link>
+                <router-link
+                  :to="{ name: 'dashboard' }"
+                  v-if="item.status.slug === statusEnabled"
+                  >{{ item.code }}</router-link
+                >
+                <template v-else>{{ item.code }}</template>
               </td>
               <td class="align-right">{{ item.value }}</td>
               <td class="align-right">{{ item.cashback_value }}</td>
@@ -60,6 +63,11 @@
 <script>
 export default {
   name: "Dashboard",
+  data() {
+    return {
+      statusEnabled: "validation"
+    };
+  },
   computed: {
     purchases() {
       return this.$store.getters["purchases/getPurchasesList"];
