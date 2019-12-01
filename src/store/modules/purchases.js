@@ -25,7 +25,7 @@ const mutations = {
 
 const actions = {
   setPurchasesList({ commit }) {
-    const path = "http://www.mocky.io/v2/5de3e2b730000086009f78cc";
+    const path = "http://www.mocky.io/v2/5de42f403000000e009f7922";
     axios.get(path).then(res => {
       commit("updateCashback", res.data.cashback_total);
       commit("updatePurchasesList", res.data.purchases);
