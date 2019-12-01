@@ -21,7 +21,8 @@
         <cashback
           class="app-header__cashback"
           label="Saldo de cashback"
-          value="R$ 15.900,00"
+          :value="cashback"
+          :loading="loading"
         />
         <div class="app-header__user-info">
           <div
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Cashback from "@/components/Cashback";
 import NavHeader from "@/components/NavHeader";
 export default {
@@ -49,11 +51,14 @@ export default {
   },
   data() {
     return {
+      cashback: "0,00",
+      loading: true,
       showMenuMobile: false
     };
   },
   mounted() {
     this.closeMenuMobile();
+    this.getCashback();
     window.addEventListener("keyup", this.keyUp);
   },
   methods: {
@@ -66,6 +71,17 @@ export default {
         const isClickInside = floatedNav.contains(evt.target);
         instance.showMenuMobile = isClickInside;
       });
+    },
+    getCashback() {
+      axios
+        .get("http://www.mocky.io/v2/5de3e2b730000086009f78cc")
+        .then(res => {
+          this.cashback = res.data.cashback_total;
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        });
     },
     keyUp(evt) {
       evt.preventDefault();

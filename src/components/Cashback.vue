@@ -1,7 +1,7 @@
 <template>
   <div class="cashback">
     <span class="cashback__label">{{ label }}</span>
-    <span class="cashback__value">{{ value }}</span>
+    <span class="cashback__value">{{ loading ? "carregando..." : value }}</span>
   </div>
 </template>
 
@@ -12,6 +12,10 @@ export default {
     label: {
       required: true,
       type: String
+    },
+    loading: {
+      default: false,
+      type: Boolean
     },
     value: {
       required: true,
