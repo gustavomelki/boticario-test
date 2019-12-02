@@ -7,12 +7,14 @@
           Digite abaixo seus dados de acesso
         </p>
       </div>
+      <app-loading class="form-login__loading" v-if="loading" />
       <form
         role="form"
         ref="form"
         class="form-login"
         @submit.prevent="onSubmit"
         @keyup="clearMessage"
+        v-show="!loading"
       >
         <p v-if="loginError" class="form__message" id="message-error">
           {{ loginError }}
@@ -88,12 +90,17 @@
 <script>
 import { mapActions } from "vuex";
 import { required, email, minLength } from "vuelidate/lib/validators";
+import AppLoading from "@/components/AppLoading";
 export default {
   name: "Login",
+  components: {
+    AppLoading
+  },
   data() {
     return {
       email: "",
       password: "",
+      loading: false,
       required: false
     };
   },
@@ -109,6 +116,7 @@ export default {
     },
     onSubmit() {
       this.required = true;
+      this.loading = true;
       if (this.$v.$invalid) return;
       this.required = false;
 
@@ -116,6 +124,11 @@ export default {
         email: this.email,
         password: this.password
       });
+    }
+  },
+  watch: {
+    loginError(data) {
+      if (data) this.loading = false;
     }
   },
   validations: {

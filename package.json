@@ -41,6 +41,7 @@
     "vue-cli-plugin-axios": "0.0.4",
     "vue-cli-plugin-fontawesome": "^0.2.0",
     "vue-cli-plugin-style-resources-loader": "^0.1.4",
+    "vue-svg-loader": "^0.15.0",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {

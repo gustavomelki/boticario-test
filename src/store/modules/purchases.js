@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const state = {
-  cashback: "carregando...",
+  cashback: "",
   list: null
 };
 

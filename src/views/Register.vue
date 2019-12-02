@@ -124,7 +124,10 @@
     </div>
     <div class="page-register__links external__links">
       <div>
-        <router-link id="external__link--login" :to="{ name: 'login' }" class="external__link"
+        <router-link
+          id="external__link--login"
+          :to="{ name: 'login' }"
+          class="external__link"
           >Já tem uma conta? Clique aqui para acessar</router-link
         >
       </div>

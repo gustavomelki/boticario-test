@@ -1,0 +1,20 @@
+.app-loading
+  background: transparent
+  height: auto
+  position: relative
+  text-align: center
+  visibility: visible
+  width: 100%
+
+  svg
+    display: block
+    margin: 0 auto
+
+  circle
+    fill: $grey-dark
+
+  &--white
+    @extend .app-loading
+    
+    circle
+      fill: $white

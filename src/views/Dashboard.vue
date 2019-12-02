@@ -3,7 +3,8 @@
     <h1>Suas Compras</h1>
     <p>Confira seu extrato de compras e a situação de cada uma</p>
     <div class="internal__card card card--white">
-      <div class="table-container">
+      <app-loading class="page-dashboard__loading" v-if="loading" />
+      <div class="table-container" v-show="!loading">
         <table
           cellpadding="0"
           cellspacing="0"
@@ -61,16 +62,26 @@
 </template>
 
 <script>
+import AppLoading from "@/components/AppLoading";
 export default {
   name: "Dashboard",
+  components: {
+    AppLoading
+  },
   data() {
     return {
+      loading: true,
       statusEnabled: "validation"
     };
   },
   computed: {
     purchases() {
       return this.$store.getters["purchases/getPurchasesList"];
+    }
+  },
+  watch: {
+    purchases(data) {
+      if (data) this.loading = false;
     }
   }
 };
