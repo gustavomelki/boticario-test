@@ -116,8 +116,8 @@ export default {
     },
     onSubmit() {
       this.required = true;
-      this.loading = true;
       if (this.$v.$invalid) return;
+      this.loading = true;
       this.required = false;
 
       this.doLogin({
