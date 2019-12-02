@@ -3,7 +3,10 @@
     <h1>Suas Compras</h1>
     <p>Confira seu extrato de compras e a situação de cada uma</p>
     <div class="internal__card card card--white">
-      <app-loading class="page-dashboard__loading" v-if="loading && !purchases" />
+      <app-loading
+        class="page-dashboard__loading"
+        v-if="loading && !purchases"
+      />
       <div class="table-container" v-show="!loading || purchases">
         <table
           cellpadding="0"
