@@ -137,8 +137,12 @@ export default {
       return number.join(",");
     },
     onSubmit() {
+      console.log("Submitting Purchases Register form...");
       this.required = true;
-      if (this.$v.$invalid) return;
+      if (this.$v.$invalid) {
+        console.warn("There are errors on submit Purchases Register form.");
+        return;
+      }
       this.required = false;
     }
   },

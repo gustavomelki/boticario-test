@@ -115,8 +115,12 @@ export default {
       this.$store.commit("auth/loginStop", null);
     },
     onSubmit() {
+      console.log("Submitting Login form...");
       this.required = true;
-      if (this.$v.$invalid) return;
+      if (this.$v.$invalid) {
+        console.warn("There are errors on submit Login form.");
+        return;
+      }
       this.loading = true;
       this.required = false;
 

@@ -154,8 +154,12 @@ export default {
   },
   methods: {
     onSubmit() {
+      console.log("Submitting Register form...");
       this.required = true;
-      if (this.$v.$invalid) return;
+      if (this.$v.$invalid) {
+        console.warn("There are errors on submit Register form.");
+        return;
+      }
       this.required = false;
     }
   },

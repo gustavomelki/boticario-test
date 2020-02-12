@@ -24,6 +24,7 @@ const mutations = {
 const actions = {
   doLogin({ commit }, loginData) {
     commit("loginStart");
+    console.log("Sending data...");
 
     axios
       .post("https://reqres.in/api/login", {
@@ -34,10 +35,16 @@ const actions = {
         commit("loginStop", null);
         commit("updateAccessToken", response.data.token);
         router.push({ name: "dashboard" });
+        console.log(
+          "%c Login ",
+          "color: white; background-color: #95B46A",
+          "User is logged in!"
+        );
       })
       .catch(error => {
         commit("loginStop", error.response.data.error);
         commit("updateAccessToken", null);
+        console.error(error);
       });
   },
   fetchAccessToken({ commit }) {
@@ -47,6 +54,11 @@ const actions = {
     localStorage.removeItem("accessToken");
     commit("logout");
     router.push({ name: "login" });
+    console.log(
+      "%c Logout ",
+      "color: white; background-color: #95B46A",
+      "User is logged out!"
+    );
   }
 };
 

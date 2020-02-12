@@ -90,10 +90,12 @@ router.beforeEach((to, from, next) => {
   // const isAuthenticated = false;
   if (to.name === "login" || to.name === "register") {
     if (isAuthenticated) {
+      console.log("User already logged in. Redirecting to Dashboard...");
       next({ name: "dashboard" });
     }
   } else {
     if (!isAuthenticated) {
+      console.log("User is logged out. Redirecting to Login page...");
       next({ name: "login" });
     }
   }
