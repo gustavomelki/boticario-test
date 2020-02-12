@@ -12,5 +12,8 @@ module.exports = {
     "src/views/*.{js,vue}",
     "!**/node_modules/**"
   ],
-  coverageReporters: ["html", "text-summary"]
+  coverageReporters: ["html", "text-summary"],
+  moduleNameMapper: {
+    "\\.(svg)$": "<rootDir>/tests/unit/__mocks__/svgMock.js"
+  }
 };
