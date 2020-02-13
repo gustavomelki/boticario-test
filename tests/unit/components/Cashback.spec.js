@@ -41,7 +41,7 @@ describe("Cashback", () => {
     expect(wrapper.find(".cashback__loading").exists()).toBe(false);
   });
 
-  test("showing loading if no one value is provided", async () => {
+  test("showing loading if no one value is provided", () => {
     wrapper.setProps({ value: " " });
     expect(wrapper.find(".cashback__loading").exists()).toBe(true);
   });
