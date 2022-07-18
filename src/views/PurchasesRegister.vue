@@ -12,7 +12,12 @@
         <div class="input__group">
           <div
             class="form-purchases-register__input-container input__container"
-            :class="{ error: $v.codePurchase.$invalid && state.required }"
+            :class="{
+              error:
+                form.codePurchase.value &&
+                $v.codePurchase.$invalid &&
+                state.required,
+            }"
           >
             <input
               class="form-purchases-register__input input--grey"
@@ -34,7 +39,12 @@
           </div>
           <div
             class="form-purchases-register__input-container input__container"
-            :class="{ error: $v.datePurchase.$invalid && state.required }"
+            :class="{
+              error:
+                form.datePurchase.value &&
+                $v.datePurchase.$invalid &&
+                state.required,
+            }"
           >
             <input
               class="form-purchases-register__input input--grey"

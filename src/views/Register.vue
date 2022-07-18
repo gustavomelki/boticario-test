@@ -18,7 +18,10 @@
         </p>
         <div
           class="input__container"
-          :class="{ error: $v.fullname.$invalid && state.required }"
+          :class="{
+            error:
+              form.fullname.value && $v.fullname.$invalid && state.required,
+          }"
         >
           <input
             class="form-register__input input--default"
@@ -36,7 +39,9 @@
         </div>
         <div
           class="input__container"
-          :class="{ error: $v.cpf.$invalid && state.required }"
+          :class="{
+            error: form.cpf.value && $v.cpf.$invalid && state.required,
+          }"
         >
           <input
             class="form-register__input input--default"
@@ -53,7 +58,9 @@
         </div>
         <div
           class="input__container"
-          :class="{ error: $v.email.$invalid && state.required }"
+          :class="{
+            error: form.email.value && $v.email.$invalid && state.required,
+          }"
         >
           <input
             class="form-register__input input--default"
@@ -74,7 +81,10 @@
         </div>
         <div
           class="input__container"
-          :class="{ error: $v.password.$invalid && state.required }"
+          :class="{
+            error:
+              form.password.value && $v.password.$invalid && state.required,
+          }"
         >
           <input
             class="form-register__input input--default"
@@ -95,7 +105,12 @@
         </div>
         <div
           class="input__container"
-          :class="{ error: $v.repeatPassword.$invalid && state.required }"
+          :class="{
+            error:
+              form.repeatPassword.value &&
+              $v.repeatPassword.$invalid &&
+              state.required,
+          }"
         >
           <input
             class="form-register__input input--default"

@@ -19,7 +19,9 @@
         </p>
         <div
           class="input__container"
-          :class="{ error: $v.email.$invalid && state.required }"
+          :class="{
+            error: form.email.value && $v.email.$invalid && state.required,
+          }"
         >
           <input
             class="form-login__input input--default"
@@ -29,6 +31,7 @@
             name="email"
             id="email"
             placeholder="E-mail"
+            required
           />
           <span
             class="form__input-message"
@@ -41,7 +44,10 @@
         </div>
         <div
           class="input__container"
-          :class="{ error: $v.password.$invalid && state.required }"
+          :class="{
+            error:
+              form.password.value && $v.password.$invalid && state.required,
+          }"
         >
           <input
             class="form-login__input input--default"
@@ -51,6 +57,7 @@
             name="password"
             id="password"
             placeholder="Senha"
+            required
           />
           <span
             class="form__input-message"
