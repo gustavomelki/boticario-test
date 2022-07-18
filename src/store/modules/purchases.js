@@ -26,7 +26,7 @@ const mutations = {
 const actions = {
   setPurchasesList({ commit }) {
     console.log("Getting purchases data...");
-    const path = "http://www.mocky.io/v2/5de42f403000000e009f7922";
+    const path = "https://www.mocky.io/v2/5de42f403000000e009f7922";
     axios
       .get(path)
       .then(res => {

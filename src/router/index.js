@@ -85,10 +85,15 @@ router.beforeEach((to, from, next) => {
   store.dispatch("auth/fetchAccessToken");
   const isAuthenticated = store.state.auth.accessToken;
   // const isAuthenticated = false;
-  if (to.name === "login" || to.name === "register") {
+  console.log("to.name: ", to.path);
+  if (to.path === "/" || to.name === "login" || to.name === "register") {
     if (isAuthenticated) {
       console.log("User already logged in. Redirecting to Dashboard...");
       next({ name: "dashboard" });
+    } else {
+      if (to.path === "/") {
+        next({ name: "login" });
+      }
     }
   } else {
     if (!isAuthenticated) {
