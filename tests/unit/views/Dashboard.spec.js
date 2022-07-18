@@ -1,8 +1,7 @@
-import Vue from "vue";
-import { shallowMount, createLocalVue } from "@vue/test-utils";
-import Vuex from "vuex";
-import Dashboard from "@/views/Dashboard";
 import store from "@/store";
+import Dashboard from "@/views/Dashboard";
+import { createLocalVue, shallowMount } from "@vue/test-utils";
+import Vuex from "vuex";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -12,7 +11,7 @@ let wrapper;
 beforeEach(() => {
   wrapper = shallowMount(Dashboard, {
     localVue,
-    store
+    store,
   });
 });
 

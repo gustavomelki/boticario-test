@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import AppLoading from "@/components/AppLoading";
+import AppLoading from "@/components/AppLoading.vue";
 export default {
   name: "Cashback",
   components: {

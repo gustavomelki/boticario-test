@@ -1,10 +1,7 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import store from "../store";
 import External from "../views/External.vue";
 import Internal from "../views/Internal.vue";
-
-Vue.use(VueRouter);
 
 const routes = [
   {
@@ -17,8 +14,8 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "login" */ "../views/Login.vue"),
         meta: {
-          title: "Acesse sua conta"
-        }
+          title: "Acesse sua conta",
+        },
       },
       {
         path: "/cadastro",
@@ -26,10 +23,10 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "register" */ "../views/Register.vue"),
         meta: {
-          title: "Cadastro de revendedor(a)"
-        }
-      }
-    ]
+          title: "Cadastro de revendedor(a)",
+        },
+      },
+    ],
   },
   {
     path: "/",
@@ -41,8 +38,8 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "dashboard" */ "../views/Dashboard.vue"),
         meta: {
-          title: "Suas Compras"
-        }
+          title: "Suas Compras",
+        },
       },
       {
         path: "/cadastro-de-compras",
@@ -52,8 +49,8 @@ const routes = [
             /* webpackChunkName: "purchases-register" */ "../views/PurchasesRegister.vue"
           ),
         meta: {
-          title: "Cadastro de Compras"
-        }
+          title: "Cadastro de Compras",
+        },
       },
       {
         path: "/editar-perfil",
@@ -61,21 +58,21 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "profile" */ "../views/Profile.vue"),
         meta: {
-          title: "Editar Perfil"
-        }
-      }
-    ]
-  }
+          title: "Editar Perfil",
+        },
+      },
+    ],
+  },
 ];
 
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
+const router = new createRouter({
+  history: createWebHistory(),
+  base: import.meta.env.BASE_URL,
+  routes,
 });
 
 // change document title
-router.afterEach(toRoute => {
+router.afterEach((toRoute) => {
   const appTitle = "Área do(a) Revendedor(a) - Grupo Boticário";
   const metaTitle =
     toRoute.meta && toRoute.meta.title

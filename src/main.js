@@ -1,17 +1,19 @@
-import Vue from "vue";
+import { createApp, h } from "vue";
+
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import money from "v-money";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import "./plugins/axios";
 import "./plugins/fontawesome";
-import "./plugins/v-money";
-import "./plugins/vuelidate";
 
-Vue.config.productionTip = false;
-
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount("#app");
+const app = createApp({
+  render: () => h(App),
+  productionTip: false,
+})
+  .component("FontAwesomeIcon", FontAwesomeIcon)
+  .use(router)
+  .use(store)
+  .use(money, { precision: 2 })
+  .mount("#app");

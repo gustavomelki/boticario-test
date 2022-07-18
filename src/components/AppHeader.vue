@@ -42,8 +42,8 @@
 
 <script>
 import { mapActions } from "vuex";
-import Cashback from "@/components/Cashback";
-import NavHeader from "@/components/NavHeader";
+import Cashback from "@/components/Cashback.vue";
+import NavHeader from "@/components/NavHeader.vue";
 export default {
   name: "AppHeader",
   components: {
