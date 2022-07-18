@@ -8,7 +8,7 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
