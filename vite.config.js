@@ -11,15 +11,4 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `
-          @import "./src/sass/animations/_animations.scss";
-          @import "./src/sass/animations/_index.scss";
-          @import "./src/sass/animations/_transitions.scss";
-        `,
-      },
-    },
-  },
 });
