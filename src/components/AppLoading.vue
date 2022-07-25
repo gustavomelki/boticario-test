@@ -1,14 +1,5 @@
 <template>
   <div class="app-loading">
-    <icon />
+    Loading...<img src="@/assets/svg/loading.svg" />
   </div>
 </template>
-
-<script type="text/javascript">
-import Icon from "@/assets/svg/loading.svg";
-export default {
-  components: {
-    Icon
-  }
-};
-</script>

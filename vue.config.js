@@ -1,6 +1,6 @@
 const path = require("path");
 module.exports = {
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     const svgRule = config.module.rule("svg");
 
     svgRule.uses.clear();
@@ -15,7 +15,7 @@ module.exports = {
   pluginOptions: {
     "style-resources-loader": {
       preProcessor: "sass",
-      patterns: [path.resolve(__dirname, "./src/sass/*.sass")]
-    }
-  }
+      patterns: [path.resolve(__dirname, "./src/sass/*.sass")],
+    },
+  },
 };

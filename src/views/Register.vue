@@ -3,69 +3,76 @@
     <div class="card card--grey-light">
       <div>
         <h3 class="card__title">Cadastro de revendedor(a)</h3>
-        <p class="card__description">
-          Digite abaixo seus dados de cadastro
-        </p>
+        <p class="card__description">Digite abaixo seus dados de cadastro</p>
       </div>
+      <AppLoading class="form-login__loading" v-if="state.loading" />
       <form
         role="form"
         ref="form"
         class="form-register"
         @submit.prevent="onSubmit"
+        v-show="!state.loading"
       >
+        <p v-if="loginError" class="form__message" id="message-error">
+          {{ loginError }}
+        </p>
         <div
           class="input__container"
-          :class="{ error: $v.fullname.$invalid && required }"
+          :class="{
+            error:
+              form.fullname.value && $v.fullname.$invalid && state.required,
+          }"
         >
           <input
             class="form-register__input input--default"
             :class="{ error: $v.fullname.$error }"
-            v-model.trim="fullname"
+            v-model.trim="form.fullname.value"
             type="text"
             name="fullname"
-            value=""
             placeholder="Nome Completo"
           />
           <span
             class="form__input-message"
-            v-if="!$v.fullname.required && required"
+            v-if="!$v.fullname.required && state.required"
             >Obrigatório</span
           >
         </div>
         <div
           class="input__container"
-          :class="{ error: $v.cpf.$invalid && required }"
+          :class="{
+            error: form.cpf.value && $v.cpf.$invalid && state.required,
+          }"
         >
           <input
             class="form-register__input input--default"
             :class="{ error: $v.cpf.$error }"
-            v-model.trim="cpf"
+            v-model.trim="form.cpf.value"
             type="tel"
             name="cpf"
-            value=""
             placeholder="CPF (apenas números)"
             v-mask="'###.###.###-##'"
           />
-          <span class="form__input-message" v-if="!$v.cpf.cpf && required"
+          <span class="form__input-message" v-if="!$v.cpf.cpf && state.required"
             >CPF inválido</span
           >
         </div>
         <div
           class="input__container"
-          :class="{ error: $v.email.$invalid && required }"
+          :class="{
+            error: form.email.value && $v.email.$invalid && state.required,
+          }"
         >
           <input
             class="form-register__input input--default"
             :class="{ error: $v.email.$error }"
-            v-model.trim="email"
+            v-model.trim="form.email.value"
             type="email"
             name="email"
-            value=""
             placeholder="E-mail"
           />
           <span
             class="form__input-message"
-            v-if="!$v.email.required && required"
+            v-if="!$v.email.required && state.required"
             >Obrigatório</span
           >
           <span class="form__input-message" v-if="!$v.email.email"
@@ -74,20 +81,22 @@
         </div>
         <div
           class="input__container"
-          :class="{ error: $v.password.$invalid && required }"
+          :class="{
+            error:
+              form.password.value && $v.password.$invalid && state.required,
+          }"
         >
           <input
             class="form-register__input input--default"
             :class="{ error: $v.password.$error }"
-            v-model.trim="password"
+            v-model.trim="form.password.value"
             type="password"
             name="password"
-            value=""
             placeholder="Senha"
           />
           <span
             class="form__input-message"
-            v-if="!$v.password.required && required"
+            v-if="!$v.password.required && state.required"
             >Obrigatório</span
           >
           <span class="form__input-message" v-if="!$v.password.minLength"
@@ -96,15 +105,19 @@
         </div>
         <div
           class="input__container"
-          :class="{ error: $v.repeatPassword.$invalid && required }"
+          :class="{
+            error:
+              form.repeatPassword.value &&
+              $v.repeatPassword.$invalid &&
+              state.required,
+          }"
         >
           <input
             class="form-register__input input--default"
             :class="{ error: $v.repeatPassword.$error }"
-            v-model.trim="repeatPassword"
+            v-model.trim="form.repeatPassword.value"
             type="password"
             name="repeatPassword"
-            value=""
             placeholder="Senha novamente"
           />
           <span
@@ -136,51 +149,95 @@
 </template>
 
 <script>
+import { ref, computed, watch, reactive } from "vue";
 import { mask } from "vue-the-mask";
-import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { useStore } from "vuex";
+import useVuelidate from "@vuelidate/core";
+import { required, email, minLength, sameAs } from "@vuelidate/validators";
 import cpf from "@/utils/validators/cpf";
+import AppLoading from "@/components/AppLoading.vue";
+
 export default {
   name: "Register",
   directives: { mask },
-  data() {
-    return {
+  setup() {
+    // access store
+    const store = useStore();
+
+    // Data
+    const form = ref({
       cpf: "",
       email: "",
       fullname: "",
       password: "",
       repeatPassword: "",
-      required: false
+    });
+
+    const state = reactive({
+      required: false,
+      loading: false,
+    });
+
+    // validations
+    const rules = {
+      cpf: {
+        cpf,
+      },
+      email: {
+        required,
+        email,
+      },
+      fullname: {
+        required,
+      },
+      password: {
+        required,
+        minLength: minLength(6),
+      },
+      repeatPassword: {
+        sameAsPassword: sameAs("password"),
+      },
     };
-  },
-  methods: {
-    onSubmit() {
+    const $v = useVuelidate(rules, form);
+
+    // computed data
+    const loginError = computed(() => {
+      return store.state.auth.loginError;
+    });
+
+    // Methods
+    const onSubmit = () => {
       console.log("Submitting Register form...");
-      this.required = true;
-      if (this.$v.$invalid) {
+      state.required = true;
+      if ($v.$invalid) {
         console.warn("There are errors on submit Register form.");
         return;
       }
-      this.required = false;
-    }
+      state.loading = true;
+      state.required = false;
+      return store.dispatch("auth/doRegister", {
+        email: form.value.email.value,
+        password: form.value.password.value,
+      });
+    };
+
+    const clearMessage = () => {
+      return store.commit("auth/loginStop", null);
+    };
+
+    // Watch
+    watch(loginError, (data) => {
+      if (data) state.loading = false;
+    });
+
+    return {
+      form,
+      state,
+      $v,
+      loginError,
+      clearMessage,
+      onSubmit,
+    };
   },
-  validations: {
-    cpf: {
-      cpf
-    },
-    email: {
-      required,
-      email
-    },
-    fullname: {
-      required
-    },
-    password: {
-      required,
-      minLength: minLength(6)
-    },
-    repeatPassword: {
-      sameAsPassword: sameAs("password")
-    }
-  }
 };
 </script>

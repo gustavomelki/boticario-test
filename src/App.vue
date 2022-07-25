@@ -13,12 +13,12 @@ export default {
   name: "App",
   methods: {
     ...mapActions({
-      fetchAccessToken: "auth/fetchAccessToken"
-    })
+      fetchAccessToken: "auth/fetchAccessToken",
+    }),
   },
   created() {
     this.fetchAccessToken();
-  }
+  },
 };
 </script>
 

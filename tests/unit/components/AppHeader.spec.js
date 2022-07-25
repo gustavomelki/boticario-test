@@ -1,9 +1,9 @@
-import { shallowMount, createLocalVue } from "@vue/test-utils";
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Vuex from "vuex";
 import AppHeader from "@/components/AppHeader";
 import store from "@/store";
+import { createLocalVue, shallowMount } from "@vue/test-utils";
+import { Vue } from "vue";
+import VueRouter from "vue-router";
+import Vuex from "vuex";
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
@@ -15,7 +15,7 @@ beforeEach(() => {
   wrapper = shallowMount(AppHeader, {
     localVue,
     store,
-    stubs: ["font-awesome-icon"]
+    stubs: ["font-awesome-icon"],
   });
 });
 

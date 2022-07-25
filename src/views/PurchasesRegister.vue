@@ -12,20 +12,24 @@
         <div class="input__group">
           <div
             class="form-purchases-register__input-container input__container"
-            :class="{ error: $v.codePurchase.$invalid && required }"
+            :class="{
+              error:
+                form.codePurchase.value &&
+                $v.codePurchase.$invalid &&
+                state.required,
+            }"
           >
             <input
               class="form-purchases-register__input input--grey"
               :class="{ error: $v.codePurchase.$error }"
-              v-model.trim="codePurchase"
+              v-model.trim="form.codePurchase.value"
               type="text"
               name="codePurchase"
-              value=""
               placeholder="Código da Compra"
             />
             <span
               class="form__input-message"
-              v-if="!$v.codePurchase.required && required"
+              v-if="!$v.codePurchase.required && state.required"
               >Obrigatório</span
             >
             <span class="form__input-message" v-if="!$v.codePurchase.minLength"
@@ -35,21 +39,25 @@
           </div>
           <div
             class="form-purchases-register__input-container input__container"
-            :class="{ error: $v.datePurchase.$invalid && required }"
+            :class="{
+              error:
+                form.datePurchase.value &&
+                $v.datePurchase.$invalid &&
+                state.required,
+            }"
           >
             <input
               class="form-purchases-register__input input--grey"
               :class="{ error: $v.datePurchase.$error }"
-              v-model.trim="datePurchase"
+              v-model.trim="form.datePurchase.value"
               type="tel"
               name="datePurchase"
-              value=""
               placeholder="Data da Compra"
               v-mask="'##/##/####'"
             />
             <span
               class="form__input-message"
-              v-if="!$v.datePurchase.required && required"
+              v-if="!$v.datePurchase.required && state.required"
               >Obrigatório</span
             >
             <span class="form__input-message" v-if="!$v.datePurchase.minLength"
@@ -63,12 +71,11 @@
           >
             <input
               class="form-purchases-register__input input--grey"
-              v-model.lazy="valuePurchase"
+              v-model.lazy="form.valuePurchase.value"
               type="tel"
               name="valuePurchase"
-              value=""
               placeholder="Valor da Compra"
-              v-money="money"
+              v-money="state.money"
             />
           </div>
           <div
@@ -77,7 +84,7 @@
             <cashback
               class="page-purchases-register__cashback"
               label="Cashback gerado:"
-              :value="cashback"
+              :value="state.cashback"
             />
           </div>
         </div>
@@ -94,31 +101,51 @@
 </template>
 
 <script>
+import { ref, watch, reactive } from "vue";
 import { mask } from "vue-the-mask";
-import { required, minLength } from "vuelidate/lib/validators";
-import Cashback from "@/components/Cashback";
+import useVuelidate from "@vuelidate/core";
+import { required, minLength } from "@vuelidate/validators";
+import Cashback from "@/components/Cashback.vue";
 export default {
   name: "PurchasesRegister",
   components: {
-    Cashback
+    Cashback,
   },
   directives: { mask },
-  data() {
-    return {
+  setup() {
+    // Data
+    const form = ref({
       codePurchase: "",
-      cashback: "0,00",
       datePurchase: "",
+
+      valuePurchase: "",
+    });
+
+    const state = reactive({
+      required: true,
+      cashback: "0,00",
       money: {
         decimal: ",",
         thousands: ".",
-        prefix: "R$ "
+        prefix: "R$ ",
       },
-      required: false,
-      valuePurchase: ""
+    });
+
+    // Validations
+    const rules = {
+      codePurchase: {
+        required,
+        minLength: minLength(5),
+      },
+      datePurchase: {
+        required,
+        minLength: minLength(10),
+      },
     };
-  },
-  methods: {
-    calculateCashback(val) {
+    const $v = useVuelidate(rules, form);
+
+    // Methods
+    const calculateCashback = (val) => {
       const number = val
         .replace("R$ ", "")
         .replace(/\./g, "")
@@ -129,37 +156,38 @@ export default {
       else if (number > 1000 && number <= 2000) cashNumber = number * 0.15;
       else cashNumber = number * 0.2;
 
-      this.cashback = this.numberToReal(cashNumber);
-    },
-    numberToReal(num) {
+      state.cashback = numberToReal(cashNumber);
+    };
+
+    const numberToReal = (num) => {
       const number = num.toFixed(2).split(".");
       number[0] = `R$ ${number[0].split(/(?=(?:...)*$)/).join(".")}`;
       return number.join(",");
-    },
-    onSubmit() {
+    };
+
+    const onSubmit = () => {
       console.log("Submitting Purchases Register form...");
-      this.required = true;
-      if (this.$v.$invalid) {
+      state.required = true;
+      if ($v.$invalid) {
         console.warn("There are errors on submit Purchases Register form.");
         return;
       }
-      this.required = false;
-    }
+      state.required = false;
+    };
+
+    // Watch
+    watch(form.value.valuePurchase, (value) => {
+      calculateCashback(value);
+    });
+
+    return {
+      form,
+      state,
+      $v,
+      calculateCashback,
+      numberToReal,
+      onSubmit,
+    };
   },
-  watch: {
-    valuePurchase(value) {
-      this.calculateCashback(value);
-    }
-  },
-  validations: {
-    codePurchase: {
-      required,
-      minLength: minLength(5)
-    },
-    datePurchase: {
-      required,
-      minLength: minLength(10)
-    }
-  }
 };
 </script>
